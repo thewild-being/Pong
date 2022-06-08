@@ -1,6 +1,7 @@
 import turtle
+# what is turtle? Official infos on the python turtle package https://docs.python.org/3/library/turtle.html
 
-wn = turtle.Screen()  # wn (or win) == window
+wn = turtle.Screen()  # wn == window
 wn.title("PONG GAME") 
 wn.bgcolor("black")  # wn background color
 wn.setup(width=800, height=600)
@@ -47,8 +48,8 @@ play_a = 0
 play_b = 0
 
 
-# ONCE CREATES THOSE OBJECTS, WE HAVE TO MAKE SURE THEY INTERACT BETWEEN THEM WITH FUNCTIONS
-# to make things simpler we defined a fx per object
+# ONCE CREATED THOSE OBJECTS, WE HAVE TO MAKE SURE THEY INTERACT BETWEEN THEM WITH FUNCTIONS
+# to make things simpler and easier to understand for a first time developer we defined a fx per object
 
 # ___PADDLE A
 def paddle_a_up():
@@ -89,9 +90,8 @@ wn.onkeypress(paddle_b_up, "Up")
 
 # BALL MOVEMENTS
 # we separate the ball movement between the x-axis movement and the y-axis movement
-ball.dx = 0.2  # dx means "delta x" and defines the unit increment (2px)
-# and thus the speed of the ball moving in the x axis
-ball.dy = 0.2  # come dx ma per y-axis
+ball.dx = 0.2  # dx means "delta x" and defines the unit increment (2px) and thus the speed of the ball moving in the x axis
+ball.dy = 0.2  # same as dx but for the y-axis
 
 # every game needs a MAIN GAME LOOP
 while True:
@@ -100,7 +100,7 @@ while True:
     ball.setx(ball.xcor() + ball.dx)  # move the ball
     ball.sety(ball.ycor() + ball.dy)
 
-    # BORDERS TO MAKE THE BALL BOUNCE
+    # ___BORDERS TO MAKE THE BALL BOUNCE
 
     if ball.ycor() > 290:  # the background s 600px. 300 + 300
         # ball's size is 20 10+10.
@@ -112,10 +112,10 @@ while True:
         ball.sety(-290)
         ball.dy *= -1
 
-    if ball.xcor() > 390:
-        ball.goto(0, 0)  # if ball goes outside the playing field, it goes back to starting point
+    if ball.xcor() > 390: # if ball goes beyond the playing field on the right side:
+        ball.goto(0, 0)  # it goes back to starting point
         ball.dx *= -1
-        play_a += 1  # == play_a = play_a + 1
+        play_a += 1. # == play_a = play_a + 1 -> player A scores one point
         score.clear()
         score.write("Player A: {}   ☃︎ ☃︎ ☃︎   Player B: {}".format(play_a, play_b), align="center",
                     font=("Courier", 24, "normal"))
@@ -128,11 +128,9 @@ while True:
         score.write("Player A: {}   ☃︎ ☃︎ ☃︎   Player B: {}".format(play_a, play_b), align="center",
                     font=("Courier", 24, "normal"))
 
-    # To make sure the ball bounces off the paddles,
+    # ___To make sure the ball bounces off the paddles,
     # we use the paddle's Y coordinates
-
     # chained comparison are written explicitly to simplify understanding of the logic
-
     if (ball.xcor() > 340 and ball.xcor() < 350) \
             and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() - 40):
         # if ball gets in front of the paddle ( 340 < x < 350 )
