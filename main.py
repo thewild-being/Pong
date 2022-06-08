@@ -1,7 +1,7 @@
 import turtle
 
-wn = turtle.Screen()  # wn (o win) == window
-wn.title("PONG GAME")  # nome wn
+wn = turtle.Screen()  # wn (or win) == window
+wn.title("PONG GAME") 
 wn.bgcolor("black")  # wn background color
 wn.setup(width=800, height=600)
 wn.tracer(0)  # this one stops the wn to updating » we have to manually update it
